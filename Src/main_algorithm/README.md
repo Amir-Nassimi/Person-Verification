@@ -1,40 +1,3 @@
-# Tracking System with CCTV
-
-![Project Image](Documentations/Header.png)
-
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Output Example](#output-example)
-- [License](#license)
-
-
-## Introduction
-
-The Tracking System with CCTV is a comprehensive solution designed to enhance security and personnel tracking within a specific location. This system utilizes advanced computer vision techniques to detect and verify employees based on their body features and facial characteristics.
-
-
-## Features
-
-The system consists of four primary modules:
-
-1. **Body Detection:** This module employs computer vision algorithms to identify individuals within CCTV camera frames accurately.
-
-2. **Body Verification:** It verifies a person's identity by comparing feature vectors extracted from the detected bodies with a labeled dataset, ensuring precise recognition.
-
-3. **Face Detection:** This module focuses on identifying facial features within the system, providing input to the Face Verification Module.
-
-4. **Face Verification:** It verifies individuals based on a dedicated face recognition dataset, ensuring accuracy in identity verification.
-
-Additionally, the system incorporates decision-making capabilities and reporting functionality, where the results of both body and face verification are used to make identity decisions and generate reports, including the assignment of unique IDs to employee images.
-
-![Project Image](Documentations/Model.jpeg)
-
-
 ## Installation
 
 To install the Employee Tracking System, follow these steps:
@@ -52,8 +15,6 @@ To install the Employee Tracking System, follow these steps:
    ```bash
    pip install -r requirements.txt
    ```
-
-
 
 ## Usage
 
@@ -133,39 +94,8 @@ my_admin_class = AdminModule(face_detection_model_path='person_verification/Mode
 main_dataset, inappropriate_format, no_face_index, multiple_face_index = my_admin_class.Create_dataset(your_database)
 ```
 
-## Output Example
-The output of the Tracking System:
+5. (Optional) Feel free to use our videos captured in an organization environment. To do so, please download and extract the videos in the following path via [this link](https://drive.google.com/drive/folders/1ybj9DcKsTv3HFFwVZfbNkCeaGhdoYC3c?usp=drive_link):
 
-```python
-[[{'Face_coordination': (875, 394, 1042, 644),
-   'Face_image': <PIL.Image.Image image mode=RGB size=167x250>,
-   'Body_coordination': (886, 394, 1254, 1068),
-   'Body_image': <PIL.Image.Image image mode=RGB size=368x674>,
-   'ID': 'Nassimi',
-   'Strict_flag': False,
-   'age': None,
-   'gender': None,
-   'emotion': None},
-  {'Face_coordination': (1494, 194, 1573, 312),
-   'Face_image': <PIL.Image.Image image mode=RGB size=79x118>,
-   'Body_coordination': (1405, 194, 1579, 578),
-   'Body_image': <PIL.Image.Image image mode=RGB size=174x384>,
-   'ID': None,
-   'Strict_flag': False,
-   'age': None,
-   'gender': None,
-   'emotion': None},
-  True]]
+```bash
+./Test/Samples/
 ```
-
-## License
-Person Verification is open-sourced under the MIT License. See [LICENSE](LICENSE) for more details.
-
-## Contributing
-While we deeply value community input and interest in Person Verification, the project is currently in a phase where we're mapping out our next steps and are not accepting contributions just yet. We are incredibly grateful for your support and understanding. Please stay tuned for future updates when we'll be ready to welcome contributions with open arms.
-
-## Credits and Acknowledgements
-We would like to extend our heartfelt thanks to Mr.Poorya Aghaomeedi for his guidance and wisdom throughout the development of Person Verification. His insights have been a beacon of inspiration for this project.
-
-## Contact Information
-Although we're not open to contributions at the moment, your feedback and support are always welcome. Please feel free to star the project or share your thoughts through the Issues tab on GitHub, and we promise to consider them carefully.please [open an issue](https://github.com/Amir-Nassimi/Person-Verification/issues) in the Person Verification repository, and we will assist you.

@@ -10,7 +10,7 @@ This project is a Django application that streams video from cameras and detects
 
 1. Clone the repository:
     ```
-    http://172.16.16.41:8080/tfs/tnc_itc/Meta%20Intelligence/_git/backend_person_verification
+    https://github.com/Amir-Nassimi/Person-Verification.git
     ```
 2. Navigate to the project directory:
     ```

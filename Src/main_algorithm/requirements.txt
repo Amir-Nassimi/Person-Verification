@@ -1,5 +1,0 @@
-ultralytics
-tensorflow-gpu==2.9
-deprecated
-gdown
-gitpython

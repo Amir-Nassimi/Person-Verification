@@ -1,0 +1,74 @@
+version: "3.9"
+
+services:
+  postgresql:
+    container_name: "postgresql"
+    image: "postgres:latest"
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=haip_admin
+      - POSTGRES_MULTIPLE_DATABASES=camera_service_db,person_recognition_db
+      - POSTGRES_PASSWORD=SecurePas$14020717
+    volumes:
+      - ./create_second_db.sh:/docker-entrypoint-initdb.d/create_second_db.sh
+    networks:
+      - backend
+    restart: "on-failure"
+
+  redis:
+    container_name: "redis"
+    image: "redis:latest"
+    privileged: true
+    ports:
+      - "6379:6379"
+    restart: "on-failure"
+    networks:
+      - backend
+
+  mqtt:
+    image: "eclipse-mosquitto:latest"
+    container_name: "mqtt"
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - backend
+    restart: "on-failure"
+
+  person-recognition:
+    container_name: "person-recognition-project"
+    image: "holoo-person-recognition-service"
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_PASSWORD=SecurePas$1376
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+      - GATEWAY_SCHEME=http
+      - GATEWAY_HOST=0.0.0.0
+      - GATEWAY_PORT=8001
+      - DATABASE_NAME=person_recognition_db
+      - DATABASE_USER=haip_admin
+      - DATABASE_PASSWORD=SecurePas$14020717
+      - DATABASE_HOST=postgresql
+      - DATABASE_PORT=5432
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+      - MQTT_TOPIC_NAME=EEE/Meta_Face
+      - REDIS_SCHEME=redis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PROJECT_NAME=person_recognition_backend
+      - CAMERA_SERVICE_SCHEME=http
+      - CAMERA_SERVICE_HOST=0.0.0.0
+      - CAMERA_SERVICE_PORT=8002
+    networks:
+      - backend
+    restart: "on-failure"
+networks:
+  backend:
